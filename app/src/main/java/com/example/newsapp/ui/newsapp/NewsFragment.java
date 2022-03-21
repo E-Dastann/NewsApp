@@ -13,9 +13,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.newsapp.R;
-import com.example.newsapp.databinding.FragmentHomeBinding;
 import com.example.newsapp.databinding.FragmentNewsBinding;
-import com.example.newsapp.ui.NewModel;
+import com.example.newsapp.ui.notifications.NewModel;
 
 public class NewsFragment extends Fragment {
     private FragmentNewsBinding binding;
@@ -56,9 +55,7 @@ public class NewsFragment extends Fragment {
         bundle.putSerializable("news", news);
         getParentFragmentManager().setFragmentResult("rk_news", bundle);
         close();
-
     }
-
     private void close() {
         NavController navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_activity_main);
         navController.navigateUp();

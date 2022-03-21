@@ -1,21 +1,16 @@
 package com.example.newsapp.ui.newsapp;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.newsapp.R;
 import com.example.newsapp.databinding.ItemNewsBinding;
-import com.example.newsapp.ui.NewModel;
+import com.example.newsapp.ui.notifications.NewModel;
 import com.example.newsapp.ui.OnItemClickListener;
 
 import java.text.SimpleDateFormat;

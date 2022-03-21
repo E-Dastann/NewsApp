@@ -7,7 +7,6 @@
     android:padding="16dp">
 
     <TextView
-
         android:id="@+id/Text_title"
         android:layout_width="260dp"
         android:layout_height="wrap_content"
@@ -18,7 +17,6 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-
         android:id="@+id/time_item"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
