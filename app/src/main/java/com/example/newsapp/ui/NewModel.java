@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class NewModel implements Serializable {
     private String textTitle;
-    private  long CreateAt;
+    private long CreateAt;
 
     public NewModel(String textTitle, long createAt) {
         this.textTitle = textTitle;

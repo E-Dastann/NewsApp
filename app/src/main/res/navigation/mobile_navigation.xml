@@ -36,4 +36,9 @@
             android:id="@+id/action_onBoardFragment_to_navigation_home"
             app:destination="@id/navigation_home" />
     </fragment>
+    <fragment
+        android:id="@+id/Image_add"
+        android:name="com.example.newsapp.ui.profileFragment.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
 </navigation>

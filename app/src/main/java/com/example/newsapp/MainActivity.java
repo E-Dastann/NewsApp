@@ -1,7 +1,12 @@
 package com.example.newsapp;
 
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
+
+import com.example.newsapp.ui.Prefs;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -16,13 +21,19 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.example.newsapp.databinding.ActivityMainBinding;
 
+import java.util.Base64;
+
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
 
+   public static   Prefs prefs ;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        prefs = new Prefs(this);
+
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
@@ -36,7 +47,9 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
-        if (true) {
+
+
+        if (!prefs.isBoardShown()) {
         navController.navigate(R.id.onBoardFragment);
         }
         navController.addOnDestinationChangedListener(new NavController.OnDestinationChangedListener() {
@@ -52,6 +65,26 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.menu_cllean,menu);
+        return true;
+
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId()==R.id.clear_text){
+           // prefs.clearCash();
+            return true;
+        }
+        else {
+            return super.onOptionsItemSelected(item);
+        }
+
+    }
 }

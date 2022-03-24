@@ -13,15 +13,16 @@ import androidx.viewpager2.widget.ViewPager2;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import com.example.newsapp.R;
 import com.example.newsapp.databinding.FragmentOnBoardBinding;
 import com.example.newsapp.ui.OnItemClickListener;
+import com.example.newsapp.ui.Prefs;
 import com.example.newsapp.ui.notifications.NewModel;
-
 ;
 
 
-public class OnBoardFragment extends Fragment  implements OnBoardAdapter.NavigateListener {
+public class OnBoardFragment extends Fragment implements OnBoardAdapter.NavigateListener {
 
     private FragmentOnBoardBinding binding;
     private ViewPager2 viewPager;
@@ -34,18 +35,23 @@ public class OnBoardFragment extends Fragment  implements OnBoardAdapter.Navigat
         // Inflate the layout for this fragment
         return binding.getRoot();
     }
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
         viewPager = binding.viewPager;
         OnBoardAdapter adapter = new OnBoardAdapter();
         binding.viewPager.setAdapter(adapter);
         binding.dotsIndicator.setViewPager2(viewPager);
         positionViewPager();
         adapter.setNavigateListener(this);
+        btnStart();
+        finshDispatcher();
 
+    }
 
-
+    private void finshDispatcher() {
         requireActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(), new OnBackPressedCallback(true) {
             @Override
             public void handleOnBackPressed() {
@@ -55,19 +61,24 @@ public class OnBoardFragment extends Fragment  implements OnBoardAdapter.Navigat
     }
 
     private void btnStart() {
-
-        NavController navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_activity_main);
-        navController.navigate(R.id.navigation_home);
+        binding.skip.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Prefs prefs = new Prefs(requireContext());
+                prefs.saveBoardState();
+                NavController navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_activity_main);
+                navController.navigateUp();
+            }
+        });
     }
-
     private void positionViewPager() {
         viewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
             public void onPageSelected(int position) {
                 if (position == 2) {
                     binding.skip.setVisibility(View.INVISIBLE);
-
-                }else {
+                }
+                else {
                     binding.skip.setVisibility(View.VISIBLE);
                 }
                 super.onPageSelected(position);
@@ -75,10 +86,12 @@ public class OnBoardFragment extends Fragment  implements OnBoardAdapter.Navigat
         });
     }
 
-
     @Override
     public void btnStartOnClick() {
+        Prefs prefs = new Prefs(requireContext());
+        prefs.saveBoardState();
         NavController navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_activity_main);
-        navController.navigate(R.id.navigation_home);
+        navController.navigateUp();
+
     }
 }
