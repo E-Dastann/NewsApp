@@ -3,4 +3,7 @@
     <item
         android:id="@+id/clear_cash"
         android:title="clean cash1" />
+    <item
+        android:id="@+id/sorted"
+        android:title="sort" />
 </menu>

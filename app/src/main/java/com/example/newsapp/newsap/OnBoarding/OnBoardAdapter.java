@@ -24,6 +24,7 @@ public class OnBoardAdapter extends RecyclerView.Adapter<OnBoardAdapter.ViewHold
     }
 
     public OnBoardAdapter() {
+
         list = new ArrayList<>();
         list.add(new BoardModel("это наша первая приложения ", "мы в сфеере It  первый раз ",R.drawable.img));
         list.add(new BoardModel("Мы верим в с нами ! ", "мы дабавим новое функции каждый день ",R.drawable.img_1));

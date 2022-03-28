@@ -16,9 +16,7 @@ import android.view.ViewGroup;
 
 import com.example.newsapp.R;
 import com.example.newsapp.databinding.FragmentOnBoardBinding;
-import com.example.newsapp.ui.OnItemClickListener;
 import com.example.newsapp.ui.Prefs;
-import com.example.newsapp.ui.notifications.NewModel;
 ;
 
 

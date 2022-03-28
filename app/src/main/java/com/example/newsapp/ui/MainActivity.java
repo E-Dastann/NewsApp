@@ -1,11 +1,14 @@
-package com.example.newsapp;
+package com.example.newsapp.ui;
 
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
+import com.example.newsapp.R;
+import com.example.newsapp.ui.App;
 import com.example.newsapp.ui.Prefs;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -27,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
 
-   public static   Prefs prefs ;
+    public static Prefs prefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,16 +53,15 @@ public class MainActivity extends AppCompatActivity {
 
 
         if (!prefs.isBoardShown()) {
-        navController.navigate(R.id.onBoardFragment);
+            navController.navigate(R.id.onBoardFragment);
         }
         navController.addOnDestinationChangedListener(new NavController.OnDestinationChangedListener() {
             @Override
             public void onDestinationChanged(@NonNull NavController navController, @NonNull NavDestination navDestination, @Nullable Bundle bundle) {
-                if (navDestination.getId()==R.id.onBoardFragment){
+                if (navDestination.getId() == R.id.onBoardFragment) {
                     binding.navView.setVisibility(View.GONE);
                     getSupportActionBar().hide();
-                }
-                else {
+                } else {
                     binding.navView.setVisibility(View.VISIBLE);
                     getSupportActionBar().show();
                 }
@@ -68,23 +70,22 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater menuInflater = getMenuInflater();
-        menuInflater.inflate(R.menu.menu_cllean,menu);
-        return true;
+@Override
+public boolean onCreateOptionsMenu(Menu menu) {
+    MenuInflater menuInflater = getMenuInflater();
+    menuInflater.inflate(R.menu.menu_cash,menu);
+    return true;
 
-    }
+}
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId()==R.id.clear_text){
-           // prefs.clearCash();
-            return true;
-        }
-        else {
-            return super.onOptionsItemSelected(item);
-        }
-
+//        if (item.getItemId()==R.id.clear_text){
+//            Toast.makeText(this, "dsgdfgfdg", Toast.LENGTH_SHORT).show();
+//            return true;
+//        }
+//        else {
+        return super.onOptionsItemSelected(item);
     }
+
 }

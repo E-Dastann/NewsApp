@@ -1,9 +1,7 @@
 package com.example.newsapp.ui.profileFragment;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -13,14 +11,10 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.StringRes;
 import androidx.fragment.app.Fragment;
 
-import android.preference.PreferenceManager;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Base64;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -29,13 +23,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.bumptech.glide.Glide;
-import com.example.newsapp.MainActivity;
+import com.example.newsapp.ui.MainActivity;
 import com.example.newsapp.R;
-import com.example.newsapp.databinding.FragmentHomeBinding;
 import com.example.newsapp.databinding.FragmentProfileBinding;
 import com.example.newsapp.ui.Prefs;
-
-import java.io.ByteArrayOutputStream;
 
 
 public class ProfileFragment extends Fragment {

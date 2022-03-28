@@ -14,7 +14,8 @@ import android.view.ViewGroup;
 
 import com.example.newsapp.R;
 import com.example.newsapp.databinding.FragmentNewsBinding;
-import com.example.newsapp.ui.notifications.NewModel;
+import com.example.newsapp.ui.App;
+import com.example.newsapp.ui.NewModel;
 
 public class NewsFragment extends Fragment {
     private FragmentNewsBinding binding;
@@ -51,6 +52,7 @@ public class NewsFragment extends Fragment {
         }
 
         NewModel news = new NewModel(text, System.currentTimeMillis());
+        App.getDataBase().newDao().insert(news);
         Bundle bundle = new Bundle();
         bundle.putSerializable("news", news);
         getParentFragmentManager().setFragmentResult("rk_news", bundle);
