@@ -3,21 +3,18 @@ package com.example.newsapp.newsap.OnBoarding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.newsapp.R;
 import com.example.newsapp.databinding.ItemPagerBoardBinding;
 
-import java.util.ArrayList;
-
 public class OnBoardAdapter extends RecyclerView.Adapter<OnBoardAdapter.ViewHolder> {
-    private ArrayList<BoardModel> list;
     private NavigateListener navigateListener;
+    private final String[] titles = new String[]{"привет ", "здесь вы можетье полчить ", "добра"};
+    private final String[] desc = new String[]{"это приложения для новости", "много чего", "Пожаловать "};
+    private final int[] lottie = new int[]{R.raw.news, R.raw.animation, R.raw.phone};
 
     public void setNavigateListener(NavigateListener navigateListener) {
         this.navigateListener = navigateListener;
@@ -25,10 +22,6 @@ public class OnBoardAdapter extends RecyclerView.Adapter<OnBoardAdapter.ViewHold
 
     public OnBoardAdapter() {
 
-        list = new ArrayList<>();
-        list.add(new BoardModel("это наша первая приложения ", "мы в сфеере It  первый раз ",R.drawable.img));
-        list.add(new BoardModel("Мы верим в с нами ! ", "мы дабавим новое функции каждый день ",R.drawable.img_1));
-        list.add(new BoardModel(" Что бы вам было комфортно и удобно", "с уважением администрация ",R.drawable.img_2));
 
     }
 
@@ -62,12 +55,10 @@ public class OnBoardAdapter extends RecyclerView.Adapter<OnBoardAdapter.ViewHold
         }
 
         public void bind(int position) {
-            BoardModel boardModel = list.get(position);
-
-            binding.TextTitle.setText(boardModel.getTitle());
-            binding.desc.setText(boardModel.getDesc());
-            binding.imageDots.setImageResource(boardModel.getImage());
-            if (position == list.size() - 1) {
+            binding.TextTitle.setText(titles[position]);
+            binding.desc.setText(desc[position]);
+            binding.imageDots.setAnimation(lottie[position]);
+            if (position == titles.length - 1) {
                 binding.startFragment.setVisibility(View.VISIBLE);
             } else {
                 binding.startFragment.setVisibility(View.INVISIBLE);
@@ -83,7 +74,8 @@ public class OnBoardAdapter extends RecyclerView.Adapter<OnBoardAdapter.ViewHold
 
 
     }
-    interface NavigateListener{
+
+    interface NavigateListener {
         void btnStartOnClick();
     }
 }

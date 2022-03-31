@@ -6,15 +6,17 @@
     android:gravity="center"
     android:orientation="vertical">
 
-    <ImageView
+    <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/image_dots"
         android:layout_width="200dp"
         android:layout_height="200dp"
-        android:layout_marginTop="100dp"
-        android:src="@mipmap/ic_launcher_round"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toBottomOf="@+id/Text_Title"
+        app:layout_constraintTop_toTopOf="parent"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        />
 
     <TextView
         android:id="@+id/Text_Title"
@@ -28,8 +30,7 @@
         android:textSize="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/image_dots"
-        />
+        app:layout_constraintTop_toBottomOf="@id/image_dots" />
 
     <TextView
         android:id="@+id/desc"

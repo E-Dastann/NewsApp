@@ -77,7 +77,7 @@ public class HomeFragment extends Fragment {
             }
 
         });
-       sortSearch();
+        sortSearch();
 
 
         adapter.setOnItemClickListener(new OnItemClickListener() {
@@ -139,9 +139,18 @@ public class HomeFragment extends Fragment {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                newModelArrayList = App.getDataBase().newDao().findUserWithName(editable.toString());
-                /*  newModelArrayList=  App.getDataBase().newDao().getAll();*/
-                adapter.addList(newModelArrayList);
+                if (binding.search.getText().toString().isEmpty()) {
+                    YoYo.with(Techniques.Shake)
+                            .duration(500)
+                            .repeat(1)
+                            .playOn(binding.search);
+                }
+
+                    newModelArrayList = App.getDataBase().newDao().findUserWithName(editable.toString());
+                    /*  newModelArrayList=  App.getDataBase().newDao().getAll();*/
+                    adapter.addList(newModelArrayList);
+
+
             }
         });
         binding.RecyclerView.setAdapter(adapter);

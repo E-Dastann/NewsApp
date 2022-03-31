@@ -12,6 +12,8 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.viewpager2.widget.ViewPager2;
 
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -27,12 +29,15 @@ import com.example.newsapp.ui.MainActivity;
 import com.example.newsapp.R;
 import com.example.newsapp.databinding.FragmentProfileBinding;
 import com.example.newsapp.ui.Prefs;
+import com.example.newsapp.ui.profileFragment.tab_loyaut.FragmentAdapter;
+import com.google.android.material.tabs.TabLayout;
 
 
 public class ProfileFragment extends Fragment {
     private ActivityResultLauncher<String> addPhoto;
     private FragmentProfileBinding binding;
     private SharedPreferences sharedPreferences;
+    private FragmentAdapter fragmentAdapter;
 
     public ProfileFragment() {
 
@@ -52,8 +57,38 @@ public class ProfileFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         addImageLouncher();
         saveText();
-            binding.dataName.setText(MainActivity.prefs.getEdit());
+        tabLayout();
+        binding.dataName.setText(MainActivity.prefs.getEdit());
 
+    }
+
+    private void tabLayout() {
+        FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
+        fragmentAdapter= new FragmentAdapter(fragmentManager,getLifecycle());
+        binding.viewPager.setAdapter(fragmentAdapter);
+        binding.tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                binding.viewPager.setCurrentItem(tab.getPosition());
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
+        binding.viewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+            @Override
+            public void onPageSelected(int position) {
+                super.onPageSelected(position);
+                binding.tabLayout.selectTab(binding.tabLayout.getTabAt(position));
+            }
+        });
     }
 
     private void saveText() {
@@ -85,7 +120,7 @@ public class ProfileFragment extends Fragment {
                             public void onActivityResult(ActivityResult result) {
                                 Intent data = result.getData();
                                 binding.ImageAdd.setImageURI(data.getData());
-                                MainActivity.prefs = new  Prefs(requireContext());
+                                MainActivity.prefs = new Prefs(requireContext());
                                 MainActivity.prefs.saveImageUri(data.getData());
                             }
                         });
@@ -112,23 +147,23 @@ public class ProfileFragment extends Fragment {
     }
 
     @Override
-    public void onCreateOptionsMenu(Menu menu ,MenuInflater inflater) {
-       inflater.inflate(R.menu.menu_cash,menu);
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.menu_cash, menu);
         menu.removeItem(R.id.clear_text);
-      super.onCreateOptionsMenu(menu,inflater);
+        super.onCreateOptionsMenu(menu, inflater);
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        int textReturn= item.getItemId();
-        if (R.id.clear_cash==textReturn){
-         MainActivity.prefs.clearCash();
-         binding.ImageAdd.setImageURI(MainActivity.prefs.getImageUri());
-         binding.dataName.setText(MainActivity.prefs.getEdit());
+        int textReturn = item.getItemId();
+        if (R.id.clear_cash == textReturn) {
+            MainActivity.prefs.clearCash();
+            binding.ImageAdd.setImageURI(MainActivity.prefs.getImageUri());
+            binding.dataName.setText(MainActivity.prefs.getEdit());
             return true;
 
         }
-     return false;
+        return false;
 
     }
 }

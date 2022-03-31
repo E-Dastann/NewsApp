@@ -52,8 +52,12 @@ dependencies {
     implementation "androidx.room:room-runtime:$room_version"
     annotationProcessor "androidx.room:room-compiler:$room_version"
 
-//YOYO
+   //YOYO
     implementation 'com.daimajia.androidanimations:library:2.4@aar'
+    //Lottie animation
+    def lottieVersion = "3.4.0"
+    implementation "com.airbnb.android:lottie:$lottieVersion"
+
 
 
 }
