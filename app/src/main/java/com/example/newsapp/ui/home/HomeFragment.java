@@ -174,7 +174,7 @@ public class HomeFragment extends Fragment {
 //        Log.e("Tag", "onOptionsItemSelected: ");
         if (item.getItemId() == R.id.sorted) {
 //            Log.e("Tag", "onOptionsItemSelected: ");
-            adapter.setList(App.getDataBase().newDao().sort());
+            adapter.setList((ArrayList<NewModel>) App.getDataBase().newDao().sort());
             binding.RecyclerView.setAdapter(adapter);
 
         }

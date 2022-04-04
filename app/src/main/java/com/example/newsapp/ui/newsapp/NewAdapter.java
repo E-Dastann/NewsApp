@@ -35,7 +35,7 @@ public class NewAdapter extends RecyclerView.Adapter<NewAdapter.ViewHolderNews> 
     public NewAdapter() {
     }
 
-    public void setList(List<NewModel> list) {
+    public void setList(ArrayList<NewModel> list) {
         this.list = list;
         notifyDataSetChanged();
     }

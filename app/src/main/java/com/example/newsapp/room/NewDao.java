@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
+import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 
 import com.example.newsapp.ui.NewModel;
@@ -16,7 +17,7 @@ public interface NewDao {
     @Query("SELECT * FROM newmodel ORDER by createAt DESC")
     List<NewModel> getAll();
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     void insert(NewModel newModel);
 
     @Delete
